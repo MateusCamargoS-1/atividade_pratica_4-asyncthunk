@@ -11,7 +11,7 @@ import {
 import CharacterCard from './CharacterCard';
 import { RootState, AppDispatch } from '../store/store';
 
-const CharacterList: React.FC = () => {
+const CharacterList = () => {
     const dispatch = useDispatch<AppDispatch>();
     const { characters, loading, error } = useSelector((state: RootState) => state.characters);
 
