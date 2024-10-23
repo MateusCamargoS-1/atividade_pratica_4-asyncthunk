@@ -5,7 +5,7 @@ interface Character {
     name: string;
     image: string;
     wizard: boolean;
-    house: string | null;
+    house?: string;
 }
 
 interface CharacterState {
@@ -14,20 +14,18 @@ interface CharacterState {
     error: string | null;
 }
 
-const initialState: CharacterState = {
-    characters: [],
-    loading: false,
-    error: null,
-};
-
-export const fetchCharacters = createAsyncThunk('characters/fetchCharacters', async () => {
+export const fetchCharacters = createAsyncThunk<Character[]>('characters/fetchCharacters', async () => {
     const response = await axios.get('https://hp-api.onrender.com/api/characters');
     return response.data;
 });
 
 const characterSlice = createSlice({
     name: 'characters',
-    initialState,
+    initialState: {
+        characters: [],
+        loading: false,
+        error: null,
+    } as CharacterState,
     reducers: {},
     extraReducers: (builder) => {
         builder
@@ -41,7 +39,7 @@ const characterSlice = createSlice({
             })
             .addCase(fetchCharacters.rejected, (state, action) => {
                 state.loading = false;
-                state.error = action.error.message || 'Falha ao carregar personagens';
+                state.error = action.error.message || 'Erro desconhecido';
             });
     },
 });
