@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCharacters } from '../store/models/characterSlice';
 import {
@@ -9,21 +9,11 @@ import {
     Typography,
 } from '@mui/material';
 import CharacterCard from './CharacterCard';
+import { RootState, AppDispatch } from '../store/store';
 
-interface CharacterState {
-    characters: {
-        name: string;
-        image: string;
-        wizard: boolean;
-        house?: string;
-    }[];
-    loading: boolean;
-    error: string | null;
-}
-
-const CharacterList = () => {
-    const dispatch = useDispatch();
-    const { characters, loading, error } = useSelector((state: { characters: CharacterState }) => state.characters);
+const CharacterList: React.FC = () => {
+    const dispatch = useDispatch<AppDispatch>();
+    const { characters, loading, error } = useSelector((state: RootState) => state.characters);
 
     const [page, setPage] = useState<number>(1);
     const itemsPerPage = 8;
