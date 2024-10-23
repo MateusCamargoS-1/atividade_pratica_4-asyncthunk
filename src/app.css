@@ -1,0 +1,56 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: url('./assets/bg-site.jpg') no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Roboto', sans-serif;
+    background-color: #ffffff;
+    backdrop-filter: blur(3px);
+    color: #ffffff;
+}
+
+.container {
+    padding: 20px;
+}
+
+h1 {
+    font-size: 3em;
+    text-align: center;
+}
+.error-message {
+    color: red;
+    text-align: center;
+    margin-top: 20px;
+}
+
+a,
+button {
+    transition: background-color 0.3s, color 0.3s;
+}
+
+a:hover,
+button:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    color: #0056b3;
+}
+
+.MuiPagination-root {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.MuiCard-root {
+    border-radius: 12px;
+    overflow: hidden; 
+}
+
+@media (max-width: 600px) {
+    .MuiCard-root {
+        max-width: 100%;
+    }
+}
